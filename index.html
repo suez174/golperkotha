@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>গল্পের কথা | Golper Kotha - বাংলা গল্পের মুক্ত মহাবিশ্ব</title>
+  <meta name="description" content="গল্পের কথা (Golper Kotha) - রহস্য, রূপকথা, ভৌতিক, কল্পবিজ্ঞান এবং চিরায়ত বাংলা গল্পের ডিজিটাল প্ল্যাটফর্ম। যেকোনো পাঠক বিনামূল্যে সকল গল্প পড়তে পারেন এবং লেখকরা একাউন্ট খুলে স্বাচ্ছন্দ্যে প্রকাশ করতে পারেন তাদের সাহিত্যকর্ম।" />
+  <meta name="keywords" content="Golper Kotha, বাংলা গল্প, ভূতের গল্প, রহস্য গল্প, রূপকথা, বাংলা সাহিত্য, Audio Stories, Bengali Story Reader" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/images/logo.jpg" />
+
+  <!-- Google Fonts: Hind Siliguri, Noto Serif Bengali, Cinzel, Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Hind+Siliguri:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="announcement-bar" aria-label="Announcement">
+    <div class="container announcement-inner">
+      <span><i class="ph-fill ph-sparkle"></i> পাঠকদের জন্য সব ধরনের গল্প উন্মুক্ত • লেখকদের জন্য নিজস্ব একাউন্ট বাধ্যতামূলক</span>
+      <span class="announcement-quote">"মনের জানালা খুলে দিলে গল্পেরা নিজেই এসে ধরা দেয়..."</span>
+    </div>
+  </aside>
+
+  <!-- Main Navigation Bar -->
+  <header class="main-header" id="mainHeader">
+    <div class="container header-inner">
+      <!-- Logo Branding -->
+      <a href="#" class="brand-logo" title="গল্পের কথা - হোম">
+        <img src="assets/images/logo.jpg" alt="গল্পের কথা লোগো" class="brand-crest" />
+        <div class="brand-text">
+          <span class="brand-name">গল্পের কথা</span>
+          <span class="brand-sub">GOLPER KOTHA</span>
+        </div>
+      </a>
+
+      <!-- Instant Search Input -->
+      <div class="header-search">
+        <i class="ph-bold ph-magnifying-glass search-icon"></i>
+        <input type="text" id="storySearchInput" placeholder="গল্প, লেখক বা ঘরানা খুঁজুন..." autocomplete="off" />
+      </div>
+
+      <!-- Navigation Actions -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <button class="btn btn-glass-sm" id="langToggleBtn" title="ভাষা পরিবর্তন করুন">
+          <strong>বাং</strong> | EN
+        </button>
+
+        <!-- Writer Account Area (Managed by auth-system.js) -->
+        <div class="nav-user-area" id="navUserArea">
+          <!-- Dynamically populated with Login button or Logged-in Writer Avatar -->
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section" id="heroSection">
+    <!-- Background Image with dynamic overlay -->
+    <div class="hero-bg-cover" style="background-image: url('assets/images/hero.jpg');"></div>
+    <div class="hero-backdrop-gradient"></div>
+    
+    <!-- Floating Embers Canvas -->
+    <canvas id="heroCanvas" class="hero-particles-canvas"></canvas>
+
+    <div class="container hero-content-wrapper">
+      <div class="hero-grid">
+        <!-- Featured Tale Dynamic Showcase -->
+        <div class="hero-spotlight" id="heroFeaturedContent">
+          <!-- Populated by app.renderFeaturedStory() -->
+        </div>
+
+        <!-- Quick Platform Stats & Writer Callout -->
+        <div class="hero-features-card">
+          <div class="writer-badge-tag">
+            <i class="ph-fill ph-shield-check"></i>
+            <span>লেখক ও পাঠক মহাবিশ্ব</span>
+          </div>
+          <h3>সাহিত্য সৃজন ও আস্বাদন</h3>
+          <p class="features-desc">
+            পাঠক হিসেবে উপভোগ করুন বাংলার সমৃদ্ধ গল্পভাণ্ডার সম্পূর্ণ বিনামূল্যে। আপনি যদি লেখক হন, একাউন্ট খুলে আজই আপনার গল্প প্রকাশ করুন বিশ্বজুড়ে হাজারো পাঠকের কাছে।
+          </p>
+
+          <div class="quick-stats-row">
+            <div class="stat-box">
+              <span class="stat-number">৮+</span>
+              <span class="stat-label">গল্পের ঘরানা</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">১০০%</span>
+              <span class="stat-label">ফ্রি রিডিং</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">অডিও</span>
+              <span class="stat-label">আবহ ধ্বনি</span>
+            </div>
+          </div>
+
+          <div class="writer-cta-box">
+            <div class="writer-cta-info">
+              <strong>আপনি কি লিখতে ভালোবাসেন?</strong>
+              <small>গল্প প্রকাশের জন্য লেখকের একাউন্ট আবশ্যক</small>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="app.handleWriteStoryClick()">
+              <i class="ph-bold ph-pen-nib"></i> গল্প লিখুন
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Genre Navigation Filter Carousel -->
+  <section class="genre-section">
+    <div class="container">
+      <div class="section-header-compact">
+        <h2 class="section-title-sm"><i class="ph-fill ph-compass"></i> গল্প অনুসন্ধান করুন</h2>
+        <span class="genre-hint">আপনার পছন্দের ঘরানা বেছে নিন</span>
+      </div>
+      <div class="genre-pills-wrapper" id="genreFilterContainer">
+        <!-- Populated by app.renderGenreFilters() -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Stories Library Section -->
+  <main class="main-content-section" id="storiesSection">
+    <div class="container">
+      <div class="section-header-flex">
+        <div>
+          <h2 class="section-title">গল্পের সিন্দুক</h2>
+          <p class="section-subtitle">রহস্য, রূপকথা, ভূতের ভয় কিংবা চিরায়ত সাহিত্যের অনন্ত সুর</p>
+        </div>
+        <div class="header-badges-right">
+          <span class="stories-count-badge" id="storiesCountBadge">লোড হচ্ছে...</span>
+        </div>
+      </div>
+
+      <!-- Story Grid Cards -->
+      <div class="stories-grid" id="storiesGrid">
+        <!-- Populated dynamically by app.renderStories() -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Audio Story Highlight / Sunday Suspense Style Feature -->
+  <section class="audio-theatre-banner">
+    <div class="container">
+      <div class="theatre-card">
+        <div class="theatre-visual">
+          <img src="assets/images/horror.jpg" alt="অডিও থিয়েটার" class="theatre-thumb" />
+          <div class="theatre-play-glow" onclick="app.playStoryAudio('story-3')">
+            <i class="ph-fill ph-play"></i>
+          </div>
+        </div>
+        <div class="theatre-info">
+          <span class="theatre-tag"><i class="ph-fill ph-waveform"></i> শ্রুতি নাটক ও অডিও আখ্যান</span>
+          <h3>নিশুতি রাতের শব্দতরঙ্গ</h3>
+          <p>
+            বৃষ্টিভেজা জানালার পাশে কিংবা মধ্যরাতের নিস্তব্ধতায় অনুভব করুন গল্পের জীবন্ত শিহরন। আমাদের কৃত্রিম আবহ সঙ্গীত (ঝুম বৃষ্টি, রাতের ঝিঁঝিঁ, জলন্ত অগ্নিকুণ্ড) আপনার পাঠের অভিজ্ঞতাকে করে তুলবে চিরস্মরণীয়।
+          </p>
+          <div class="theatre-actions">
+            <button class="btn btn-primary" onclick="app.playStoryAudio('story-3')">
+              <i class="ph-fill ph-headphones"></i> এখনই শুনুন
+            </button>
+            <button class="btn btn-glass" onclick="app.openReader('story-3')">
+              <i class="ph-fill ph-book-open"></i> পাঠ শুরু করুন
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Writer Invitation Banner -->
+  <section class="writer-callout-section">
+    <div class="container">
+      <div class="writer-banner-card">
+        <div class="writer-banner-content">
+          <div class="icon-circle">
+            <i class="ph-fill ph-feather"></i>
+          </div>
+          <h2>আপনার গল্প ছড়িয়ে দিন দেশ-বিদেশের লক্ষ পাঠকের কাছে</h2>
+          <p>
+            'গল্পের কথা'য় যেকোনো পাঠক বিনামূল্যে সব গল্প পড়তে পারেন। কিন্তু গল্প লিখতে বা প্রকাশ করতে আপনাকে হতে হবে একজন নিবন্ধিত লেখক। আজই বিনামূল্যে আপনার লেখক একাউন্ট তৈরি করুন!
+          </p>
+          <div class="writer-banner-buttons">
+            <button class="btn btn-primary glow-btn" onclick="app.handleWriteStoryClick()">
+              <i class="ph-bold ph-pencil-simple-line"></i> লেখক একাউন্ট খুলুন ও গল্প লিখুন
+            </button>
+            <button class="btn btn-glass" onclick="app.openAuthModal('login')">
+              <i class="ph-bold ph-sign-in"></i> ইতিমধ্যে একাউন্ট আছে? লগইন করুন
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="container footer-inner">
+      <div class="footer-col-brand">
+        <div class="brand-logo footer-logo">
+          <img src="assets/images/logo.jpg" alt="লোগো" class="brand-crest" />
+          <div class="brand-text">
+            <span class="brand-name">গল্পের কথা</span>
+            <span class="brand-sub">GOLPER KOTHA</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          বাংলা ভাষার ঐতিহ্য, কল্পনা আর রহস্যের মেলবন্ধনে তৈরি এক উন্মুক্ত ডিজিটাল গল্পলোক।
+        </p>
+        <div class="footer-socials">
+          <a href="#" class="social-icon" title="ফেসবুক"><i class="ph-bold ph-facebook-logo"></i></a>
+          <a href="#" class="social-icon" title="ইউটিউব"><i class="ph-bold ph-youtube-logo"></i></a>
+          <a href="#" class="social-icon" title="টুইটার"><i class="ph-bold ph-x-logo"></i></a>
+          <a href="#" class="social-icon" title="পডকাস্ট"><i class="ph-bold ph-spotify-logo"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>জনপ্রিয় ঘরানা</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="app.setGenre('mystery')">রহস্য ও থ্রিলার</a></li>
+          <li><a href="javascript:void(0)" onclick="app.setGenre('horror')">ভৌতিক ও অলৌকিক</a></li>
+          <li><a href="javascript:void(0)" onclick="app.setGenre('folk')">রূপকথা ও ঠাকুরমার ঝুলি</a></li>
+          <li><a href="javascript:void(0)" onclick="app.setGenre('classic')">চিরায়ত সাহিত্য</a></li>
+          <li><a href="javascript:void(0)" onclick="app.setGenre('scifi')">বৈজ্ঞানিক কল্পকাহিনী</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>লেখকদের জন্য</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="app.handleWriteStoryClick()">নতুন গল্প জমা দিন</a></li>
+          <li><a href="javascript:void(0)" onclick="app.openAuthModal('register')">লেখক হিসেবে নিবন্ধন</a></li>
+          <li><a href="javascript:void(0)" onclick="app.openAuthModal('login')">লেখক লগইন</a></li>
+          <li><a href="javascript:void(0)" onclick="app.openMyStoriesModal()">আমার প্রকাশিত গল্প</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>পাঠকদের নিয়মাবলী</h4>
+        <p class="footer-info-text">
+          সকল পাঠকের জন্য গল্প পাঠ সম্পূর্ণ উন্মুক্ত ও ফ্রি। কোনো সাবস্ক্রিপশন ফি নেই। ভালো লাগলে প্রিয় গল্পে কড়াতালি (Clap) দিন এবং মতামত জানান।
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>&copy; ২০২৬ গল্পের কথা (Golper Kotha). সর্বস্বত্ব সংরক্ষিত।</span>
+        <span>বাংলা সাহিত্যের ভালোবাসায় নির্মিত ❤️</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================== -->
+  <!-- MODAL: FULLSCREEN IMMERSIVE READER             -->
+  <!-- ============================================== -->
+  <div class="modal reader-modal" id="readerModal">
+    <div class="reader-modal-dialog">
+      <!-- Reader Header Bar -->
+      <header class="reader-header">
+        <div class="reader-header-left">
+          <button class="reader-close-btn" onclick="app.closeReader()" title="বন্ধ করুন">
+            <i class="ph-bold ph-x"></i>
+          </button>
+          <div class="reader-title-preview">
+            <span id="readerStoryTitle" class="reader-h-title">গল্পের শিরোনাম</span>
+            <span class="reader-h-author"><i class="ph-bold ph-feather"></i> <span id="readerAuthorName">লেখক</span></span>
+          </div>
+        </div>
+
+        <div class="reader-header-controls">
+          <!-- Theme Switcher -->
+          <div class="reader-ctrl-group">
+            <span class="ctrl-label">আবহ থিম:</span>
+            <button class="theme-toggle-btn active" data-theme="midnight" onclick="app.setReaderTheme('midnight')" title="গভীর রাত (Midnight)">
+              <span class="theme-dot midnight-dot"></span>
+            </button>
+            <button class="theme-toggle-btn" data-theme="parchment" onclick="app.setReaderTheme('parchment')" title="পুঁথি (Parchment)">
+              <span class="theme-dot parchment-dot"></span>
+            </button>
+            <button class="theme-toggle-btn" data-theme="sepia" onclick="app.setReaderTheme('sepia')" title="সেপিয়া (Sepia)">
+              <span class="theme-dot sepia-dot"></span>
+            </button>
+            <button class="theme-toggle-btn" data-theme="snow" onclick="app.setReaderTheme('snow')" title="সাদা (Snow)">
+              <span class="theme-dot snow-dot"></span>
+            </button>
+          </div>
+
+          <!-- Font Size Adjuster -->
+          <div class="reader-ctrl-group">
+            <span class="ctrl-label">হরফের মাপ:</span>
+            <button class="font-size-btn" data-size="small" onclick="app.setReaderFontSize('small')">A-</button>
+            <button class="font-size-btn active" data-size="medium" onclick="app.setReaderFontSize('medium')">A</button>
+            <button class="font-size-btn" data-size="large" onclick="app.setReaderFontSize('large')">A+</button>
+          </div>
+
+          <!-- Read Aloud Speech Button -->
+          <button class="btn btn-outline btn-xs" id="readerTtsBtn" onclick="app.toggleSpeechNarration()" title="গল্পটি শুনুন">
+            <i class="ph-fill ph-speaker-high"></i> পাঠ শুনুন
+          </button>
+        </div>
+      </header>
+
+      <!-- Scroll Reading Progress Bar -->
+      <div class="reading-progress-track">
+        <div class="reading-progress-fill" id="readerReadingProgress"></div>
+      </div>
+
+      <!-- Reader Scrollable Main Content -->
+      <div class="reader-scroll-container" id="readerScrollArea">
+        <div class="reader-main-content theme-midnight font-medium" id="readerMainContent">
+          
+          <!-- Cover Banner inside Story -->
+          <div class="reader-cover-container">
+            <img src="" id="readerStoryCover" alt="Cover" class="reader-cover-banner" />
+            <div class="reader-cover-meta">
+              <span class="genre-pill-inline" id="readerStoryGenre">ঘরানা</span>
+              <span class="readtime-inline"><i class="ph-bold ph-clock"></i> <span id="readerReadTime">সময়</span></span>
+            </div>
+          </div>
+
+          <!-- Author Info Card -->
+          <div class="reader-author-strip">
+            <img src="" id="readerAuthorAvatar" alt="Author" class="author-avatar-md" />
+            <div>
+              <span class="written-by">কাহিনী রচনা:</span>
+              <h4 id="readerAuthorName" class="author-fullname">লেখক নাম</h4>
+            </div>
+            <div class="reader-actions-right">
+              <button class="btn btn-outline btn-xs" id="readerBookmarkBtn">
+                <i class="ph-bold ph-bookmark-simple"></i> সংরক্ষণ
+              </button>
+            </div>
+          </div>
+
+          <!-- Ambient Sound Controls Floating Box -->
+          <div class="reader-ambient-panel">
+            <div class="ambient-panel-title">
+              <i class="ph-fill ph-headphones"></i> আবহ ধ্বনি সংযুক্ত করুন:
+            </div>
+            <div class="ambient-buttons-row">
+              <button class="ambient-btn active" data-ambient="none">
+                <i class="ph-bold ph-speaker-simple-slash"></i> নিস্তব্ধ
+              </button>
+              <button class="ambient-btn" data-ambient="rain">
+                <i class="ph-fill ph-cloud-rain"></i> ঝুম বৃষ্টি
+              </button>
+              <button class="ambient-btn" data-ambient="crickets">
+                <i class="ph-fill ph-moon-stars"></i> রাতের ঝিঁঝিঁ
+              </button>
+              <button class="ambient-btn" data-ambient="fire">
+                <i class="ph-fill ph-fire"></i> অগ্নিকুণ্ড
+              </button>
+              <button class="ambient-btn" data-ambient="wind">
+                <i class="ph-fill ph-wind"></i> দমকা বাতাস
+              </button>
+            </div>
+            <div class="ambient-volume-row">
+              <i class="ph-bold ph-speaker-low"></i>
+              <input type="range" id="ambientVolSlider" min="0" max="1" step="0.05" value="0.4" title="শব্দমাত্রা" />
+              <i class="ph-bold ph-speaker-high"></i>
+            </div>
+          </div>
+
+          <!-- Story Text Paragraphs -->
+          <article class="reader-story-body" id="readerStoryBody">
+            <!-- Injected by app.openReader() -->
+          </article>
+
+          <!-- Story Footer Interactions (Clap / Share) -->
+          <div class="reader-footer-interactions">
+            <div class="reader-clap-wrapper">
+              <button class="reader-clap-btn" id="readerClapBtn" title="গল্পটি ভালো লাগলে হাততালি দিন">
+                <i class="ph-fill ph-hands-clapping"></i>
+                <span class="clap-count" id="readerClapCount">0</span>
+              </button>
+              <span class="clap-help-text">গল্পটি পছন্দ হলে লেখককে উৎসাহ দিতে হাততালি দিন</span>
+            </div>
+          </div>
+
+          <!-- Reader Discussion & Comments -->
+          <div class="reader-comments-section">
+            <h3 class="comments-heading"><i class="ph-fill ph-chat-circle-text"></i> পাঠকদের প্রতিক্রিয়া ও মন্তব্য</h3>
+
+            <!-- Comment Input Form -->
+            <form class="comment-input-box" id="readerCommentForm">
+              <input type="text" id="commentAuthorInput" placeholder="আপনার নাম (ঐচ্ছিক)" class="form-input mb-2" />
+              <textarea id="commentTextInput" placeholder="গল্পটি কেমন লাগল? আপনার অনুভূতি জানান..." rows="3" class="form-textarea" required></textarea>
+              <div class="comment-submit-row">
+                <button type="submit" class="btn btn-primary btn-sm">মন্তব্য প্রকাশ করুন</button>
+              </div>
+            </form>
+
+            <!-- Comments List -->
+            <div class="comments-list" id="readerCommentsList">
+              <!-- Injected by app.renderReaderComments() -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: WRITER AUTHENTICATION & LOGIN/SIGNUP    -->
+  <!-- ============================================== -->
+  <div class="modal auth-modal" id="authModal">
+    <div class="modal-dialog auth-dialog">
+      <button class="modal-close-btn" onclick="app.closeAuthModal()" title="বন্ধ করুন">
+        <i class="ph-bold ph-x"></i>
+      </button>
+
+      <div class="auth-header">
+        <img src="assets/images/logo.jpg" alt="লোগো" class="auth-crest" />
+        <h2>লেখক কেন্দ্র (Writer's Portal)</h2>
+        <p class="auth-sub">
+          গল্প প্রকাশের জন্য লেখকের একাউন্টে লগইন থাকা বাধ্যতামূলক। পাঠকরা যেকোনো গল্প সরাসরি পড়তে পারেন।
+        </p>
+      </div>
+
+      <!-- Priority Notice Banner (if triggered via write story click) -->
+      <div class="auth-notice-banner" id="authModalNotice" style="display: none;">
+        <!-- Injected notice -->
+      </div>
+
+      <!-- Tabs: Login vs Register -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabLoginBtn" onclick="app.switchAuthTab('login')">
+          <i class="ph-bold ph-sign-in"></i> লেখক লগইন
+        </button>
+        <button class="auth-tab-btn" id="tabRegisterBtn" onclick="app.switchAuthTab('register')">
+          <i class="ph-bold ph-user-plus"></i> নতুন লেখক নিবন্ধন
+        </button>
+      </div>
+
+      <!-- TAB 1: LOGIN FORM -->
+      <div id="loginFormContainer" class="auth-form-container">
+        <!-- Quick Demo Author Pills for 1-click test -->
+        <div class="demo-logins-box">
+          <span class="demo-tag"><i class="ph-bold ph-lightning"></i> দ্রুত পরীক্ষার জন্য ডেমো লেখক বেছে নিন:</span>
+          <div class="demo-pills-row">
+            <button type="button" class="demo-author-pill" onclick="app.quickLogin('aniruddha@golperkotha.com', 'writer123password')">
+              <i class="ph-bold ph-user"></i> অনিরুদ্ধ মজুমদার (রহস্য)
+            </button>
+            <button type="button" class="demo-author-pill" onclick="app.quickLogin('aparna@golperkotha.com', 'writer123password')">
+              <i class="ph-bold ph-user"></i> অপর্ণা দেবী (রূপকথা)
+            </button>
+            <button type="button" class="demo-author-pill" onclick="app.quickLogin('shubhendu@golperkotha.com', 'writer123password')">
+              <i class="ph-bold ph-user"></i> শুভেন্দু চট্টোপাধ্যায় (ভৌতিক)
+            </button>
+          </div>
+        </div>
+
+        <form onsubmit="app.handleLoginFormSubmit(event)">
+          <div class="form-group">
+            <label for="loginEmail">লেখকের ইমেল ঠিকানা</label>
+            <div class="input-with-icon">
+              <i class="ph-bold ph-envelope"></i>
+              <input type="email" id="loginEmail" placeholder="your-email@golperkotha.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">গোপন পাসওয়ার্ড</label>
+            <div class="input-with-icon">
+              <i class="ph-bold ph-lock-key"></i>
+              <input type="password" id="loginPassword" placeholder="••••••••" required />
+            </div>
+          </div>
+
+          <div id="loginErrorMsg" class="form-error-msg"></div>
+
+          <button type="submit" class="btn btn-primary btn-block glow-btn mt-3">
+            <i class="ph-bold ph-sign-in"></i> একাউন্টে প্রবেশ করুন
+          </button>
+        </form>
+      </div>
+
+      <!-- TAB 2: REGISTER FORM -->
+      <div id="registerFormContainer" class="auth-form-container" style="display: none;">
+        <form onsubmit="app.handleRegisterFormSubmit(event)">
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="regName">আপনার পূর্ণ নাম *</label>
+              <input type="text" id="regName" class="form-input" placeholder="উদাঃ সৌমেন রায়" required />
+            </div>
+            <div class="form-group col">
+              <label for="regPenName">লেখক নাম / ছদ্মনাম *</label>
+              <input type="text" id="regPenName" class="form-input" placeholder="উদাঃ কল্পতরু" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail">ইমেল ঠিকানা *</label>
+            <input type="email" id="regEmail" class="form-input" placeholder="author@domain.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regPassword">পাসওয়ার্ড তৈরি করুন *</label>
+            <input type="password" id="regPassword" class="form-input" placeholder="কমপক্ষে ৪ অক্ষর" required />
+          </div>
+
+          <div class="form-group">
+            <label for="regGenre">প্রধান লেখার ক্ষেত্র / প্রিয় ঘরানা</label>
+            <select id="regGenre" class="form-select">
+              <option value="রহস্য ও রোমাঞ্চ">রহস্য ও রোমাঞ্চ</option>
+              <option value="রূপকথা ও লোকগাথা">রূপকথা ও লোকগাথা</option>
+              <option value="ভৌতিক ও অলৌকিক">ভৌতিক ও অলৌকিক</option>
+              <option value="চিরায়ত সাহিত্য">চিরায়ত সাহিত্য</option>
+              <option value="কল্পবিজ্ঞান">কল্পবিজ্ঞান</option>
+              <option value="রোমান্টিক ও জীবনগাথা">রোমান্টিক ও জীবনগাথা</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="regBio">লেখক পরিচিতি (Bio)</label>
+            <textarea id="regBio" class="form-textarea" rows="2" placeholder="আপনার লেখার আগ্রহ সম্পর্কে সংক্ষেপে লিখুন..."></textarea>
+          </div>
+
+          <div id="regErrorMsg" class="form-error-msg"></div>
+
+          <button type="submit" class="btn btn-primary btn-block glow-btn mt-3">
+            <i class="ph-bold ph-feather"></i> লেখক একাউন্ট সম্পন্ন করুন
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: WRITER STUDIO (WRITE & PUBLISH STORY)   -->
+  <!-- ============================================== -->
+  <div class="modal writer-studio-modal" id="writerStudioModal">
+    <div class="modal-dialog studio-dialog">
+      <button class="modal-close-btn" onclick="app.closeWriterStudio()" title="বন্ধ করুন">
+        <i class="ph-bold ph-x"></i>
+      </button>
+
+      <div class="studio-header">
+        <div class="studio-author-info">
+          <i class="ph-fill ph-feather studio-feather"></i>
+          <div>
+            <h2>লেখক স্টুডিও: নতুন গল্প প্রকাশ</h2>
+            <p>লেখক: <strong id="studioAuthorName">লেখক</strong> • <span id="studioAuthorEmail">email</span></p>
+          </div>
+        </div>
+      </div>
+
+      <form id="publishStoryForm" onsubmit="app.handlePublishStory(event)" class="studio-form">
+        <div class="form-row">
+          <div class="form-group col-8">
+            <label for="storyTitleInput">গল্পের শিরোনাম (বাংলায়) *</label>
+            <input type="text" id="storyTitleInput" class="form-input" placeholder="উদাঃ নিঝুম রাতের বাঁশি" required />
+          </div>
+          <div class="form-group col-4">
+            <label for="storyGenreInput">গল্পের ঘরানা *</label>
+            <select id="storyGenreInput" class="form-select" required>
+              <option value="mystery">রহস্য ও রোমাঞ্চ</option>
+              <option value="folk">রূপকথা ও লোকগাথা</option>
+              <option value="horror">ভৌতিক ও অলৌকিক</option>
+              <option value="classic">চিরায়ত সাহিত্য</option>
+              <option value="scifi">কল্পবিজ্ঞান</option>
+              <option value="romance">রোমান্টিক</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-8">
+            <label for="storyTitleEnInput">ইংরেজি শিরোনাম (English Title - Optional)</label>
+            <input type="text" id="storyTitleEnInput" class="form-input" placeholder="e.g. The Whistle in the Deep Silence" />
+          </div>
+          <div class="form-group col-4">
+            <label for="storyReadTimeInput">পড়ার আনুমানিক সময়</label>
+            <input type="text" id="storyReadTimeInput" class="form-input" value="৬ মিনিট" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="storyCoverSelect">প্রচ্ছদ ছবি নির্বাচন করুন *</label>
+          <select id="storyCoverSelect" class="form-select">
+            <option value="assets/images/mystery.jpg">শ্যামনগর রাজবাড়ি ও কুয়াশা (Mystery Cover)</option>
+            <option value="assets/images/folk.jpg">মায়াপঙ্খী ও সোনার পদ্ম (Fairytale Cover)</option>
+            <option value="assets/images/horror.jpg">ঝড়ের রাতে প্রাচীন বটবৃক্ষ (Horror Cover)</option>
+            <option value="assets/images/classic.jpg">গ্রামবাংলার বটমূল ও নদী (Classic Cover)</option>
+            <option value="assets/images/hero.jpg">জাদুকরি লাইব্রেরি ও প্রদীপ (Cosy Library)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="storySummaryInput">এক নজরে সারাংশ / টিজার (Summary)</label>
+          <textarea id="storySummaryInput" class="form-textarea" rows="2" placeholder="পাঠকদের আকর্ষণ করার মতো ১-২ লাইনের সারসংক্ষেপ..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="storyContentInput">সম্পূর্ণ গল্পের কাহিনী (Story Content) *</label>
+          <textarea id="storyContentInput" class="form-textarea story-editor-textarea" rows="12" placeholder="আপনার গল্পটি এখানে মন খুলে লিখুন... প্যারাগ্রাফ পরিবর্তনের জন্য দ্বিগুণ এন্টার (Enter) চাপুন।" required></textarea>
+        </div>
+
+        <div class="studio-footer-actions">
+          <button type="button" class="btn btn-outline" onclick="app.closeWriterStudio()">বাতিল করুন</button>
+          <button type="submit" class="btn btn-primary glow-btn">
+            <i class="ph-bold ph-paper-plane-tilt"></i> 'গল্পের কথা'য় প্রকাশ করুন
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: MY PUBLISHED STORIES                    -->
+  <!-- ============================================== -->
+  <div class="modal" id="myStoriesModal">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" onclick="app.closeMyStoriesModal()" title="বন্ধ করুন">
+        <i class="ph-bold ph-x"></i>
+      </button>
+
+      <div class="modal-header-simple">
+        <h2><i class="ph-bold ph-books"></i> আমার প্রকাশিত গল্পসমূহ</h2>
+        <p>মোট গল্প সংখ্যা: <span id="myStoriesCount">০</span></p>
+      </div>
+
+      <div class="my-stories-list-container" id="myStoriesList">
+        <!-- Injected by app.openMyStoriesModal() -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- GLOBAL FIXED AUDIO PLAYER DOCK (BOTTOM BAR)    -->
+  <!-- ============================================== -->
+  <aside class="global-audio-player" id="globalAudioPlayer" aria-label="Audio Story Player">
+    <div class="container player-inner">
+      <div class="player-track-info">
+        <img src="assets/images/logo.jpg" alt="Track Cover" id="playerCover" class="player-thumb" />
+        <div class="player-text">
+          <strong id="playerTitle" class="player-title">গল্পের অডিও</strong>
+          <span id="playerAuthor" class="player-author">লেখক নাম</span>
+        </div>
+      </div>
+
+      <!-- Real-time Visualizer Canvas -->
+      <div class="player-visualizer-box">
+        <canvas id="playerVisualizer" width="160" height="32"></canvas>
+      </div>
+
+      <!-- Controls -->
+      <div class="player-controls">
+        <button class="player-btn-circle" id="playerPlayBtn" title="প্লে/পজ">
+          <i class="ph-fill ph-play"></i>
+        </button>
+
+        <div class="player-speed-pill">
+          <i class="ph-bold ph-gauge"></i>
+          <select id="speechRateSelect" title="গতি">
+            <option value="0.8">0.8x</option>
+            <option value="1.0" selected>1.0x</option>
+            <option value="1.25">1.25x</option>
+            <option value="1.5">1.5x</option>
+          </select>
+        </div>
+
+        <button class="player-close-btn" id="playerCloseBtn" title="প্লেয়ার বন্ধ করুন">
+          <i class="ph-bold ph-x"></i>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Application Scripts -->
+  <script src="js/stories-data.js"></script>
+  <script src="js/auth-system.js"></script>
+  <script src="js/audio-engine.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
